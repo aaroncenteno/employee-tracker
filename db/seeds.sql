@@ -1,4 +1,4 @@
-USE company
+USE company_tracker
 
 INSERT INTO departments (name)
 VALUES
