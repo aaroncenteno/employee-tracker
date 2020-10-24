@@ -25,16 +25,16 @@ VALUES
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES
-('Todd', 'Quad', 1, 4),
-('Karen', 'Boomer', 2, 4),
-('Vince', 'Lince', 3, 4),
-('Clance', 'Glance', 4, 1),
-('Cade', 'Jade', 5, 1),
-('Amy', 'Jaime', 6, 2),
-('Joe', 'Doe', 7, 2),
-('Chad', 'Brad', 8, 2),
-('Joey', 'Boey', 9, 3),
-('Aaron', 'Tarin', 10, 3),
-('Alejandra', 'Gondra', 11, 5),
-('Hannah', 'Cabanna', 12, 5);
+('Todd', 'Quad', 1, NULL),
+('Karen', 'Boomer', 2, 1),
+('Vince', 'Lince', 3, 1),
+('Clance', 'Glance', 4, 5),
+('Cade', 'Jade', 5, NULL),
+('Amy', 'Jaime', 6, NULL),
+('Joe', 'Doe', 7, 6),
+('Chad', 'Brad', 8, 6),
+('Joey', 'Boey', 9, 10),
+('Aaron', 'Tarin', 10, NULL),
+('Alejandra', 'Gondra', 11, 12),
+('Hannah', 'Cabanna', 12, NULL);
 

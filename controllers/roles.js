@@ -1,10 +1,10 @@
 const connection = require('../db/database');
 const cTable = require('console.table');
 const inquirer = require('inquirer');
-const util = require('util');
 
 const  { getDepartments }  = require('./departments');
-const companyDatabaseQuestions = require('./companyDatabaseQuestions');
+const { companyDatabaseQuestions } = require('../app');
+
 function getRoles() {
     return connection.promise().query("SELECT * FROM roles");
 };
@@ -16,22 +16,22 @@ function viewAllRoles() {
                                     ON roles.department_id = departments.id
                                     ORDER BY id`,
     function (err, res) {
-        if (err) throw err
-        console.log("\n All Roles \n")
+        if (err) throw err;
+        console.log("\n Company Roles \n");
         console.table(res);
-        // companyDatabaseQuestions();
-    }) 
+        companyDatabaseQuestions();
+    }); 
 };
 
 function addARole() {
     getDepartments()
     .then((rows) => {
-        let departmentNamesArr = []
-        let departmentArray = rows[0]
+        let departmentNamesArr = [];
+        let departmentArray = rows[0];
         for (let i = 0; i < departmentArray.length; i++) {
             let department = departmentArray[i].name;
             departmentNamesArr.push(department)
-        }
+        };
 
         inquirer
         .prompt([
@@ -60,8 +60,8 @@ function addARole() {
                 if (response.department === departmentArray[i].name) {
                   departmentID = departmentArray[i].id;
                   break
-                }
-            }
+                };
+            };
     
             // Added role to role table
             connection.query('INSERT INTO roles SET ?',
@@ -73,13 +73,14 @@ function addARole() {
               function(err, res) {
                 if (err) throw err;
                 console.log(response.roleName + ' added to company roles!\n');
+                companyDatabaseQuestions();
               });
-        })
-    })
+        });
+    });
 };
 
 module.exports = { 
     getRoles,
     viewAllRoles,
     addARole
-}
+};
